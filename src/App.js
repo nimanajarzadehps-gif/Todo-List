@@ -42,7 +42,7 @@ import Alert from '@mui/material/Alert';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 
 
-// ---------- Search bar styling ----------
+
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -104,7 +104,7 @@ export default function App() {
   );
 }
 
-// ---------- Navbar ----------
+
 function PrimarySearchAppBar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -259,7 +259,6 @@ function PrimarySearchAppBar() {
     </Box>
   );
 }
-// ---------- Sidebar ----------
 function Sidebar({mode,setmode}) {
   function handlemode() {
     if (mode==="light") {
@@ -331,31 +330,31 @@ function Sidebar({mode,setmode}) {
   );
 }
 
-// ---------- Feed ----------
+
 function Feed() {
   const [tasks, setTasks] = React.useState([]);  
    const [title, setTitle] = React.useState("");
   const [description, setDescription] = React.useState("");
   const [click,setclick] = React.useState(false)
-  // همه کارها اینجا نگهداری میشن
+ 
 
   return (
     <Box sx={{ flex: 4, minHeight: "100vh", p: 2 }}>
-      {/* فرم اضافه کردن کار */}
+   
       <AddTaskForm tasks={tasks} setTasks={setTasks} title={title} setTitle={setTitle} 
       description={description} setDescription={setDescription} click={click} setclick={setclick}/>
 
       <Stack display={"flex"} flexDirection={"row"} mt={2} spacing={2}>
-        {/* کارهای جدید */}
+   
         <New_Task tasks={tasks} setTasks={setTasks} title={title}
          setTitle={setTitle} description={description} setDescription={setDescription}
          click={click} setclick={setclick}
          />
 
-        {/* کارهای در حال انجام */}
+        
         <Inprogress tasks={tasks} setTasks={setTasks} />
 
-        {/* کارهای تکمیل شده */}
+      
         <Completed tasks={tasks} setTasks={setTasks}  />
       </Stack>
     </Box>
@@ -498,7 +497,7 @@ function AddTaskForm({ tasks, setTasks ,title ,setTitle, description , setDescri
 
 
   const handleAdd = () => {
-    if (!title) return; // اگه عنوان خالی بود کاری نکن
+    if (!title) return; 
     const newTask = {
       id: Date.now(),
       title,
@@ -538,7 +537,7 @@ function New_Task({ tasks, setTasks }) {
   const [display, setDisplay] = React.useState(true);
   const [alert, setAlert] = React.useState(false);
 
-  // تغییر وضعیت isEditing
+
   const handleEditToggle = (id) => {
     setTasks((prev) =>
       prev.map((t) =>
@@ -547,7 +546,7 @@ function New_Task({ tasks, setTasks }) {
     );
   };
 
-  // ذخیره تغییرات عنوان و توضیحات
+
   const handleSave = (id, newTitle, newDescription) => {
     setTasks((prev) =>
       prev.map((t) => {
@@ -570,7 +569,6 @@ function New_Task({ tasks, setTasks }) {
     );
   };
 
-  // شروع کار
   const handleStart = (taskId) => {
     setTasks((prev) =>
       prev.map((t) =>
@@ -579,11 +577,11 @@ function New_Task({ tasks, setTasks }) {
     );
   };
 
-  // حذف کار
+ 
   const handleDelete = (taskId) =>
     setTasks((prev) => prev.filter((t) => t.id !== taskId));
 
-  // فقط کارهای new
+
   const newTasks = tasks.filter((task) => task.status === "new");
   if (newTasks.length === 0) return null;
 
